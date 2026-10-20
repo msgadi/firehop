@@ -1,0 +1,39 @@
+[package]
+name = "firehop"
+description = "Several WhatsApp accounts side by side in one native desktop window"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+# The `_lib` suffix avoids a name clash with the binary on Windows (cargo#8519).
+name = "firehop_lib"
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.5", features = [] }
+
+[dependencies]
+firehop-core.workspace = true
+tauri = { version = "2.12", features = ["unstable"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-log = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-window-state = "2"
+log.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+url.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+# Must match the versions wry uses (check with `cargo tree -i webview2-com`).
+webview2-com = "0.39"
+windows = "0.62"
+
+[lints]
+workspace = true

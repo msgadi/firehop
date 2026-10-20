@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 780" width="1280" height="780" role="img" aria-label="Illustration of the Firehop window: an account strip on the left and a chat app on the right">
+  <defs>
+    <linearGradient id="fire" x1="0.15" y1="1" x2="0.85" y2="0">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="0.45" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#e3261c"/>
+    </linearGradient>
+    <linearGradient id="ph1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6a46b"/>
+      <stop offset="1" stop-color="#b4583a"/>
+    </linearGradient>
+    <linearGradient id="ph2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cc4e8"/>
+      <stop offset="1" stop-color="#3a6e9a"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <clipPath id="win"><rect x="40" y="30" width="1200" height="720" rx="14"/></clipPath>
+    <radialGradient id="ember" cx="0.12" cy="0.95" r="0.6">
+      <stop offset="0" stop-color="#ff7a1a" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1280" height="780" fill="#0b0f12"/>
+  <rect width="1280" height="780" fill="url(#ember)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="30" width="1200" height="720" rx="14" fill="#161717"/>
+  </g>
+
+  <g clip-path="url(#win)" font-family="Segoe UI Variable Text, Segoe UI, Inter, system-ui, sans-serif">
+    <!-- Title bar -->
+    <rect x="40" y="30" width="1200" height="36" fill="#1f1f1f"/>
+    <g transform="translate(56 40) scale(0.0156)">
+      <path d="M310 850 A404 404 0 1 0 162 702 L110 914 Z" fill="url(#fire)"/>
+    </g>
+    <text x="80" y="53" font-size="13" fill="#d1d7db">(7) Firehop</text>
+    <g stroke="#aebac1" stroke-width="1.4" fill="none">
+      <path d="M1112 48 h10"/>
+      <rect x="1158" y="43" width="10" height="10"/>
+      <path d="M1204 43 l10 10 M1214 43 l-10 10"/>
+    </g>
+
+    <!-- Account strip -->
+    <rect x="40" y="66" width="72" height="684" fill="#1d1f1f"/>
+    <rect x="111" y="66" width="1" height="684" fill="#2e3030"/>
+    <!-- active: photo -->
+    <rect x="40" y="86" width="4" height="40" rx="2" fill="#e9edef"/>
+    <rect x="54" y="84" width="44" height="44" rx="13" fill="url(#ph1)"/>
+    <circle cx="76" cy="100" r="8" fill="#ffffff" fill-opacity="0.85"/>
+    <path d="M62 126 q14 -18 28 0" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="86" y="80" width="22" height="20" rx="10" fill="#1daa61" stroke="#1d1f1f" stroke-width="2"/>
+    <text x="97" y="94" font-size="11" font-weight="700" text-anchor="middle" fill="#111b21">3</text>
+    <!-- W -->
+    <circle cx="76" cy="160" r="22" fill="#53bdeb" fill-opacity="0.22"/>
+    <text x="76" y="166" font-size="15" font-weight="600" text-anchor="middle" fill="#53bdeb">W</text>
+    <rect x="86" y="136" width="22" height="20" rx="10" fill="#1daa61" stroke="#1d1f1f" stroke-width="2"/>
+    <text x="97" y="150" font-size="11" font-weight="700" text-anchor="middle" fill="#111b21">4</text>
+    <!-- photo 2 -->
+    <circle cx="76" cy="214" r="22" fill="url(#ph2)"/>
+    <circle cx="76" cy="208" r="7" fill="#ffffff" fill-opacity="0.85"/>
+    <path d="M64 230 q12 -15 24 0" fill="#ffffff" fill-opacity="0.85"/>
+    <!-- F -->
+    <circle cx="76" cy="268" r="22" fill="#a78bfa" fill-opacity="0.22"/>
+    <text x="76" y="274" font-size="15" font-weight="600" text-anchor="middle" fill="#a78bfa">F</text>
+    <rect x="60" y="304" width="32" height="1" fill="#2e3030"/>
+    <path d="M76 322 v20 M66 332 h20" stroke="#aebac1" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Chat app (generic illustration) -->
+    <rect x="112" y="66" width="64" height="684" fill="#1d1f1f"/>
+    <g fill="#aebac1" fill-opacity="0.55">
+      <rect x="130" y="88" width="28" height="28" rx="14"/>
+      <rect x="134" y="140" width="20" height="20" rx="6"/>
+      <rect x="134" y="182" width="20" height="20" rx="10"/>
+      <rect x="134" y="224" width="20" height="20" rx="6"/>
+    </g>
+    <rect x="176" y="66" width="1" height="684" fill="#2e3030"/>
+
+    <rect x="177" y="66" width="380" height="684" fill="#161717"/>
+    <text x="200" y="108" font-size="22" font-weight="700" fill="#e9edef">Chats</text>
+    <rect x="200" y="128" width="334" height="38" rx="19" fill="#242626"/>
+    <rect x="220" y="143" width="120" height="8" rx="4" fill="#aebac1" fill-opacity="0.35"/>
+    <g>
+      <rect x="196" y="188" width="342" height="64" rx="10" fill="#242626"/>
+      <circle cx="226" cy="220" r="20" fill="#f59e0b" fill-opacity="0.6"/>
+      <rect x="258" y="206" width="140" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+      <rect x="258" y="226" width="210" height="8" rx="4" fill="#aebac1" fill-opacity="0.45"/>
+      <circle cx="516" cy="230" r="9" fill="#1daa61"/>
+    </g>
+    <g>
+      <circle cx="226" cy="292" r="20" fill="#ef6f6c" fill-opacity="0.6"/>
+      <rect x="258" y="278" width="110" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+      <rect x="258" y="298" width="230" height="8" rx="4" fill="#aebac1" fill-opacity="0.45"/>
+    </g>
+    <g>
+      <circle cx="226" cy="364" r="20" fill="#7c8cff" fill-opacity="0.6"/>
+      <rect x="258" y="350" width="160" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+      <rect x="258" y="370" width="180" height="8" rx="4" fill="#aebac1" fill-opacity="0.45"/>
+      <circle cx="516" cy="374" r="9" fill="#1daa61"/>
+    </g>
+    <g>
+      <circle cx="226" cy="436" r="20" fill="#2dd4bf" fill-opacity="0.5"/>
+      <rect x="258" y="422" width="90" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+      <rect x="258" y="442" width="200" height="8" rx="4" fill="#aebac1" fill-opacity="0.45"/>
+    </g>
+    <g>
+      <circle cx="226" cy="508" r="20" fill="#f472b6" fill-opacity="0.5"/>
+      <rect x="258" y="494" width="130" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+      <rect x="258" y="514" width="160" height="8" rx="4" fill="#aebac1" fill-opacity="0.45"/>
+    </g>
+    <rect x="557" y="66" width="1" height="684" fill="#2e3030"/>
+
+    <!-- Conversation -->
+    <rect x="558" y="66" width="682" height="684" fill="#121313"/>
+    <rect x="558" y="66" width="682" height="60" fill="#1d1f1f"/>
+    <circle cx="590" cy="96" r="18" fill="#f59e0b" fill-opacity="0.6"/>
+    <rect x="620" y="90" width="120" height="10" rx="5" fill="#e9edef" fill-opacity="0.8"/>
+    <g fill="none" stroke="#aebac1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1124" y="88" width="20" height="16" rx="3"/>
+      <path d="M1144 93 l8 -4 v14 l-8 -4"/>
+      <path d="M1176 88 c0 10 8 18 18 18 l3 -5 -6 -3 -3 3 c-4 -2 -7 -5 -9 -9 l3 -3 -3 -6 z"/>
+    </g>
+
+    <rect x="590" y="160" width="300" height="56" rx="12" fill="#242626"/>
+    <rect x="606" y="176" width="240" height="9" rx="4.5" fill="#e9edef" fill-opacity="0.7"/>
+    <rect x="606" y="194" width="160" height="9" rx="4.5" fill="#e9edef" fill-opacity="0.45"/>
+
+    <rect x="900" y="236" width="310" height="56" rx="12" fill="#144d37"/>
+    <rect x="916" y="252" width="250" height="9" rx="4.5" fill="#e9edef" fill-opacity="0.75"/>
+    <rect x="916" y="270" width="140" height="9" rx="4.5" fill="#e9edef" fill-opacity="0.5"/>
+
+    <rect x="590" y="312" width="240" height="40" rx="12" fill="#242626"/>
+    <rect x="606" y="328" width="190" height="9" rx="4.5" fill="#e9edef" fill-opacity="0.7"/>
+
+    <!-- Call card -->
+    <rect x="920" y="372" width="290" height="70" rx="12" fill="#144d37"/>
+    <circle cx="954" cy="407" r="18" fill="#0f3a29"/>
+    <path d="M946 401 h12 v12 h-12 z M958 404 l7 -4 v14 l-7 -4" fill="#e9edef"/>
+    <text x="982" y="402" font-size="15" font-weight="600" fill="#e9edef">Video call</text>
+    <text x="982" y="424" font-size="13" fill="#aebac1">Works in Firehop</text>
+
+    <!-- Composer -->
+    <rect x="558" y="690" width="682" height="60" fill="#1d1f1f"/>
+    <rect x="610" y="702" width="560" height="36" rx="18" fill="#242626"/>
+    <rect x="632" y="716" width="140" height="8" rx="4" fill="#aebac1" fill-opacity="0.35"/>
+    <circle cx="1202" cy="720" r="18" fill="#1daa61"/>
+  </g>
+
+  <!-- Callout -->
+  <g font-family="Segoe UI Variable Text, Segoe UI, Inter, system-ui, sans-serif">
+    <path d="M120 400 C 150 470 180 520 230 560" fill="none" stroke="#ffb067" stroke-width="2" stroke-dasharray="6 6"/>
+    <rect x="236" y="540" width="250" height="64" rx="14" fill="#1f1410" stroke="#ff7a1a" stroke-opacity="0.6"/>
+    <text x="254" y="566" font-size="15" font-weight="700" fill="#ffd23f">Hop between accounts</text>
+    <text x="254" y="588" font-size="13" fill="#e9edef">Badges show unread per account</text>
+  </g>
+</svg>

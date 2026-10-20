@@ -1,0 +1,58 @@
+// The only module that talks to the Rust side. Everything else in the UI is
+// plain DOM and pure functions with no Tauri dependency.
+
+import { invoke } from "@tauri-apps/api/core";
+import { listen, type UnlistenFn } from "@tauri-apps/api/event";
+import { Menu } from "@tauri-apps/api/menu";
+import { getCurrentWindow } from "@tauri-apps/api/window";
+import { ask } from "@tauri-apps/plugin-dialog";
+import type { AccountView, ProfileForm, RosterView } from "./model";
+
+/** Must match `ROSTER_CHANGED` in src-tauri/src/observer.rs. */
+const ROSTER_CHANGED = "roster-changed";
+
+export const backend = {
+  roster: () => invoke<RosterView>("roster"),
+  addAccount: () => invoke<void>("add_account"),
+  activateAccount: (id: string) => invoke<void>("activate_account", { id }),
+  reloadAccount: (id: string) => invoke<void>("reload_account", { id }),
+  removeAccount: (id: string) => invoke<void>("remove_account", { id }),
+  openAccountEditor: (id: string) => invoke<void>("open_account_editor", { id }),
+  updateAccount: (id: string, form: ProfileForm) => invoke<void>("update_account", { id, form }),
+  /** Resolves to false when the user cancels the file picker. */
+  chooseAccountPhoto: (id: string) => invoke<boolean>("choose_account_photo", { id }),
+  clearAccountPhoto: (id: string) => invoke<void>("clear_account_photo", { id }),
+  closeThisWindow: () => getCurrentWindow().close(),
+
+  onRosterChanged: (handler: (view: RosterView) => void): Promise<UnlistenFn> =>
+    listen<RosterView>(ROSTER_CHANGED, (event) => handler(event.payload)),
+
+  /** Native right-click menu for an account in the strip. */
+  async showAccountMenu(account: AccountView): Promise<void> {
+    const menu = await Menu.new({
+      items: [
+        {
+          id: "edit",
+          text: "Edit account…",
+          action: () => void backend.openAccountEditor(account.id),
+        },
+        { id: "reload", text: "Reload", action: () => void backend.reloadAccount(account.id) },
+        { item: "Separator" },
+        {
+          id: "remove",
+          text: "Log out and remove…",
+          action: () => void confirmRemoval(account),
+        },
+      ],
+    });
+    await menu.popup();
+  },
+};
+
+async function confirmRemoval(account: AccountView): Promise<void> {
+  const confirmed = await ask(
+    `"${account.name}" will be logged out on this computer and its local data erased.`,
+    { title: "Remove account?", kind: "warning", okLabel: "Remove", cancelLabel: "Cancel" },
+  );
+  if (confirmed) await backend.removeAccount(account.id);
+}

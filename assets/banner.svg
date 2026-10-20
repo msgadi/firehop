@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" role="img" aria-label="Firehop: every WhatsApp account, one window">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0f12"/>
+      <stop offset="1" stop-color="#160c08"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.22" cy="0.55" r="0.55">
+      <stop offset="0" stop-color="#ff7a1a" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.92" cy="0.1" r="0.45">
+      <stop offset="0" stop-color="#e3261c" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#e3261c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fire" x1="0.15" y1="1" x2="0.85" y2="0">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="0.45" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#e3261c"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0" stop-color="#ffe066"/>
+      <stop offset="1" stop-color="#ff8a1f"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="0.5" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#e3261c"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#ffffff" fill-opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="420" fill="url(#bg)"/>
+  <rect width="1280" height="420" fill="url(#dots)"/>
+  <rect width="1280" height="420" fill="url(#glow)"/>
+  <rect width="1280" height="420" fill="url(#glow2)"/>
+
+  <!-- Icon -->
+  <g transform="translate(120 80) scale(0.25)">
+    <path d="M310 850 A404 404 0 1 0 162 702 L110 914 Z" fill="url(#fire)"/>
+    <path d="M310 850 A404 404 0 1 0 162 702 L110 914 Z" fill="none" stroke="#ffffff" stroke-width="52"
+          stroke-linejoin="round" transform="translate(512 500) scale(0.84) translate(-512 -500)"/>
+    <g transform="translate(512 482) scale(1.32) translate(-512 -482)">
+      <path fill="#ffffff" d="M512 296 C566 368 648 424 648 526 C648 606 588 668 512 668 C436 668 376 606 376 526 C376 474 404 432 436 400 C442 442 464 470 492 480 C478 420 484 354 512 296 Z"/>
+      <path fill="url(#core)" d="M512 468 C542 510 576 536 576 588 C576 624 548 652 512 652 C476 652 448 624 448 588 C448 556 468 532 490 514 C494 536 505 550 518 554 C510 526 506 500 512 468 Z"/>
+    </g>
+  </g>
+
+  <!-- Wordmark and tagline -->
+  <text x="420" y="196" font-family="Segoe UI Variable Display, Segoe UI, Inter, system-ui, sans-serif"
+        font-size="112" font-weight="800" letter-spacing="-3" fill="url(#word)">Firehop</text>
+  <text x="424" y="252" font-family="Segoe UI Variable Text, Segoe UI, Inter, system-ui, sans-serif"
+        font-size="30" font-weight="600" fill="#e9edef">Every WhatsApp account. One window.</text>
+  <text x="424" y="292" font-family="Segoe UI Variable Text, Segoe UI, Inter, system-ui, sans-serif"
+        font-size="20" fill="#aebac1">The real WhatsApp Web, untouched, for up to ten accounts side by side.</text>
+
+  <!-- Pills -->
+  <g font-family="Segoe UI Variable Text, Segoe UI, Inter, system-ui, sans-serif" font-size="16" font-weight="600">
+    <rect x="424" y="324" width="170" height="36" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="509" y="348" text-anchor="middle" fill="#ffd23f">Calls included</text>
+    <rect x="606" y="324" width="160" height="36" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="686" y="348" text-anchor="middle" fill="#ffb067">Isolated logins</text>
+    <rect x="778" y="324" width="172" height="36" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="864" y="348" text-anchor="middle" fill="#ff8a6a">Rust + WebView2</text>
+    <rect x="962" y="324" width="150" height="36" rx="18" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="1037" y="348" text-anchor="middle" fill="#e9edef">Free &amp; open</text>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+/* Shared design tokens and base rules for every local page (strip, editor).
+   Colours follow WhatsApp's own dark and light palettes, so our pages read as
+   part of the app rather than something bolted on. */
+
+:root {
+  color-scheme: light dark;
+
+  --surface: #ffffff;
+  --rail: #f7f5f3;
+  --edge: #e9edef;
+  --field: #f0f2f5;
+  --text: #111b21;
+  --text-muted: #54656f;
+  --hover-bg: rgb(0 0 0 / 6%);
+  --pill: #111b21;
+  --icon: #54656f;
+  --primary: #1daa61;
+  --primary-fg: #ffffff;
+  --danger: #d6453d;
+  --badge-bg: #1daa61;
+  --badge-fg: #ffffff;
+  --focus-ring: #1daa61;
+
+  /* No greens: green is reserved for unread badges and primary actions, as in WhatsApp. */
+  --accent-0: #7c8cff;
+  --accent-1: #53bdeb;
+  --accent-2: #a78bfa;
+  --accent-3: #f59e0b;
+  --accent-4: #ef6f6c;
+  --accent-5: #f472b6;
+  --accent-6: #94a3b8;
+  --accent-7: #d4a373;
+
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #161717;
+    --rail: #1d1f1f;
+    --edge: #2e3030;
+    --field: #242626;
+    --text: #e9edef;
+    --text-muted: #aebac1;
+    --hover-bg: rgb(255 255 255 / 7%);
+    --pill: #e9edef;
+    --icon: #aebac1;
+    --primary-fg: #111b21;
+    --danger: #f15c6d;
+    --badge-fg: #111b21;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over every component rule */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over every component rule */
+    transition: none !important;
+  }
+}

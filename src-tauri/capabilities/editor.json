@@ -1,0 +1,16 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "editor",
+  "description": "The account editor window: reads the roster, saves one account's profile and photo, closes itself.",
+  "webviews": ["editor"],
+  "permissions": [
+    "core:event:allow-listen",
+    "core:event:allow-unlisten",
+    "core:window:allow-close",
+    "core:window:allow-destroy",
+    "allow-roster",
+    "allow-update-account",
+    "allow-choose-account-photo",
+    "allow-clear-account-photo"
+  ]
+}

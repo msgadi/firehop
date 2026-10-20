@@ -1,0 +1,220 @@
+/* The account editor window. Tokens and base rules live in theme.css. */
+@import "./theme.css";
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  font-size: 14px;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  padding: 28px 28px 24px;
+}
+
+/* Photo */
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  border-radius: 30%;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 200ms ease,
+    transform 240ms var(--ease-spring);
+  animation: arrive 320ms var(--ease-spring);
+}
+
+.avatar.has-photo {
+  box-shadow:
+    0 0 0 3px var(--surface),
+    0 0 0 6px var(--accent);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes arrive {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Fields */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.label {
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+input[type="text"] {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-muted);
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary);
+}
+
+/* Colour swatches */
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.swatch {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out);
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+.swatch input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.swatch:has(input:checked) {
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--accent);
+}
+
+.swatch:has(input:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+/* Feedback and actions */
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.button {
+  height: 36px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 120ms var(--ease-out);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.button.primary {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+
+.button.primary:hover {
+  background: color-mix(in srgb, var(--primary) 88%, var(--text));
+}
+
+.button.secondary {
+  border-color: var(--edge);
+  background: transparent;
+  color: var(--text);
+}
+
+.button.secondary:hover,
+.button.ghost:hover {
+  background: var(--hover-bg);
+}
+
+.button.ghost {
+  background: transparent;
+  color: var(--text-muted);
+}

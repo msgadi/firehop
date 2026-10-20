@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit account</title>
+    <link rel="stylesheet" href="./editor.css" />
+    <script type="module" src="./editor.ts"></script>
+  </head>
+  <body>
+    <form class="editor" novalidate>
+      <section class="identity" aria-label="Photo">
+        <div class="avatar" aria-hidden="true">
+          <span class="initials"></span>
+          <img alt="" hidden />
+        </div>
+        <div class="photo-actions">
+          <button class="button secondary" type="button" data-action="choose-photo">
+            Change photo
+          </button>
+          <button class="button ghost" type="button" data-action="remove-photo" hidden>
+            Remove
+          </button>
+        </div>
+      </section>
+
+      <label class="field">
+        <span class="label">Name</span>
+        <input name="name" type="text" autocomplete="off" spellcheck="false" required />
+        <span class="hint">Shown in the strip. Its initials become the avatar.</span>
+      </label>
+
+      <label class="field">
+        <span class="label">Full name</span>
+        <input
+          name="fullName"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Optional"
+        />
+        <span class="hint">Shown when you hover the account.</span>
+      </label>
+
+      <fieldset class="field colors">
+        <legend class="label">Color</legend>
+        <div class="swatches"></div>
+      </fieldset>
+
+      <p class="error" role="alert" hidden></p>
+
+      <footer class="actions">
+        <button class="button ghost" type="button" data-action="cancel">Cancel</button>
+        <button class="button primary" type="submit">Save</button>
+      </footer>
+    </form>
+  </body>
+</html>

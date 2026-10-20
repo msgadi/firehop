@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/msgadi/firehop/security/advisories/new
+    about: Report security issues privately, please.
+  - name: WhatsApp itself is broken
+    url: https://faq.whatsapp.com/
+    about: Issues inside WhatsApp Web (chats, calls, status) belong to WhatsApp.

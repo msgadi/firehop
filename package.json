@@ -1,0 +1,35 @@
+{
+  "name": "firehop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Every WhatsApp account in one native window. Unofficial; not affiliated with WhatsApp or Meta.",
+  "license": "MIT",
+  "author": "Mohammed Gadi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msgadi/firehop.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "ui:dev": "vite",
+    "ui:build": "tsc --noEmit && vite build",
+    "lint": "biome check . && tsc --noEmit",
+    "format": "biome check --write .",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-dialog": "~2.7.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@tauri-apps/cli": "^2.12.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

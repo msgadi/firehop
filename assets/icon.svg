@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- Fire gradient: hot yellow at the bottom, burning into red at the top. -->
+    <linearGradient id="fire" x1="0.15" y1="1" x2="0.85" y2="0">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="0.45" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#e3261c"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0" stop-color="#ffe066"/>
+      <stop offset="1" stop-color="#ff8a1f"/>
+    </linearGradient>
+    <!-- Chat bubble: a circle with a tail at the lower left. -->
+    <path id="bubble" d="M310 850 A404 404 0 1 0 162 702 L110 914 Z"/>
+  </defs>
+
+  <use href="#bubble" fill="url(#fire)"/>
+  <use href="#bubble" fill="none" stroke="#ffffff" stroke-width="52" stroke-linejoin="round"
+       transform="translate(512 500) scale(0.84) translate(-512 -500)"/>
+
+  <!-- Flame, scaled up so it still reads at taskbar size. -->
+  <g transform="translate(512 482) scale(1.32) translate(-512 -482)">
+    <path fill="#ffffff" d="M512 296 C566 368 648 424 648 526 C648 606 588 668 512 668
+      C436 668 376 606 376 526 C376 474 404 432 436 400 C442 442 464 470 492 480
+      C478 420 484 354 512 296 Z"/>
+    <path fill="url(#core)" d="M512 468 C542 510 576 536 576 588 C576 624 548 652 512 652
+      C476 652 448 624 448 588 C448 556 468 532 490 514 C494 536 505 550 518 554
+      C510 526 506 500 512 468 Z"/>
+  </g>
+</svg>
