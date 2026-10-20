@@ -6,6 +6,8 @@ All notable changes to Firehop are listed here. The format follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-20
+
 ### Added
 - One window, up to 10 WhatsApp accounts, each in an isolated WebView2 profile.
 - Account strip with unread badges, a total in the window title, and smooth switching.

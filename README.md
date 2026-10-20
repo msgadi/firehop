@@ -14,9 +14,12 @@ Each one runs the genuine WhatsApp Web in its own isolated profile. A slim strip
 ![Built with Tauri](https://img.shields.io/badge/built%20with-Tauri%202-ff7a1a?logo=tauri&logoColor=white)
 ![Rust](https://img.shields.io/badge/core-Rust-e3261c?logo=rust)
 [![License: MIT](https://img.shields.io/badge/license-MIT-ffd23f)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/msgadi/firehop?color=ff7a1a&include_prereleases)](https://github.com/msgadi/firehop/releases/latest)
 ![Status](https://img.shields.io/badge/status-prototype-aebac1)
 
-[Features](#-features) · [How it works](#-how-it-works) · [Install](#-build-from-source) · [Architecture](#%EF%B8%8F-architecture) · [FAQ](#-faq) · [Disclaimer](#%EF%B8%8F-disclaimer)
+**[⬇️ Download for Windows](https://github.com/msgadi/firehop/releases/latest)**
+
+[Features](#-features) · [How it works](#-how-it-works) · [Download](#%EF%B8%8F-download) · [Build](#-build-from-source) · [Architecture](#%EF%B8%8F-architecture) · [FAQ](#-faq) · [Disclaimer](#%EF%B8%8F-disclaimer)
 
 </div>
 
@@ -78,9 +81,13 @@ flowchart LR
 - **Unread counts** come from the page title ("(3) WhatsApp"). That is the only signal we read from WhatsApp's page.
 - **Switching** shows the target before hiding the rest, so there is never an empty frame.
 
-## 🚀 Build from source
+## ⬇️ Download
 
-> Prebuilt installers will come with the first release.
+1. Get **`Firehop_x.y.z_x64-setup.exe`** from the [latest release](https://github.com/msgadi/firehop/releases/latest) (about 2 MB, Windows 10/11, no admin rights needed).
+2. Run it. The installer is not code-signed yet, so Windows SmartScreen may say *"Windows protected your PC"*. Click **More info → Run anyway**.
+3. Click **+** in the strip and scan the QR code with WhatsApp on your phone (*Settings → Linked devices → Link a device*). Repeat for every number.
+
+## 🚀 Build from source
 
 **Prerequisites:** [Rust](https://rustup.rs) (stable), [Node.js 24](https://nodejs.org), and the WebView2 runtime (already on Windows 10/11).
 
