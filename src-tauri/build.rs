@@ -6,6 +6,7 @@ fn main() {
         "add_account",
         "activate_account",
         "move_account",
+        "accent_color",
         "open_account_editor",
         "update_account",
         "choose_account_photo",

@@ -68,6 +68,7 @@ pub fn run() {
             commands::add_account,
             commands::activate_account,
             commands::move_account,
+            commands::accent_color,
             commands::reload_account,
             commands::remove_account,
             commands::open_account_editor,

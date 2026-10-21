@@ -65,6 +65,10 @@ app should look and behave exactly like the official WhatsApp Desktop app.
     Foundations, 02 Components, 03 Screens, 04 Flows, 05 Brand, 06
     Proposals), tag each board SHIPPED / BUILT / PROPOSED, and add a line to
     the Cover changelog. Keep it in sync with `ui/theme.css` and the code.
+16. The **taskbar button shows the total unread count** (October 2026), like
+    WhatsApp Desktop: a Windows overlay badge in the system accent colour
+    (Windows paints app badges in it), hidden at 0, "99+" past 99. Flashing
+    the taskbar and a tray icon were proposed and are not built.
 
 ## Non-negotiable product rules
 
@@ -95,11 +99,12 @@ src-tauri        firehop (Tauri shell): adapters and composition root
   observer.rs      StripObserver: pushes RosterView to the strip and editor, sets the window title
   editor.rs        the account editor window (owned by the main window)
   commands.rs      IPC commands (async, so webview work never blocks the UI thread); native file picker
-  platform.rs      the only raw WebView2 COM code (memory target level)
+  platform.rs      the only raw Windows API code (WebView2 memory target, accent colour)
 ui/              the account strip and editor: vanilla TypeScript, no framework
   backend.ts       the only module that talks to Rust
   strip.ts         keyed DOM rendering, so CSS transitions animate; FLIP glide on reorder
   reorder.ts       drag-and-drop gesture for reordering the strip (pointer events)
+  taskbar.ts       draws the unread total as the taskbar overlay badge
   model.ts         types mirroring RosterView and ProfileForm, plus pure helpers
   editor.ts        the account editor page (photo, name, full name, colour)
   theme.css        shared design tokens for every local page

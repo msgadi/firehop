@@ -3,6 +3,7 @@
 
 import { invoke } from "@tauri-apps/api/core";
 import { listen, type UnlistenFn } from "@tauri-apps/api/event";
+import { Image } from "@tauri-apps/api/image";
 import { Menu } from "@tauri-apps/api/menu";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { ask } from "@tauri-apps/plugin-dialog";
@@ -11,11 +12,19 @@ import type { AccountView, MoveActions, ProfileForm, RosterView } from "./model"
 /** Must match `ROSTER_CHANGED` in src-tauri/src/observer.rs. */
 const ROSTER_CHANGED = "roster-changed";
 
+/** A square RGBA bitmap, `size` × `size` pixels. */
+export interface SquareImage {
+  readonly rgba: Uint8Array;
+  readonly size: number;
+}
+
 export const backend = {
   roster: () => invoke<RosterView>("roster"),
   addAccount: () => invoke<void>("add_account"),
   activateAccount: (id: string) => invoke<void>("activate_account", { id }),
   moveAccount: (id: string, index: number) => invoke<void>("move_account", { id, index }),
+  /** The Windows accent colour as `#rrggbb`, or null if it cannot be read. */
+  accentColor: () => invoke<string | null>("accent_color"),
   reloadAccount: (id: string) => invoke<void>("reload_account", { id }),
   removeAccount: (id: string) => invoke<void>("remove_account", { id }),
   openAccountEditor: (id: string) => invoke<void>("open_account_editor", { id }),
@@ -24,6 +33,18 @@ export const backend = {
   chooseAccountPhoto: (id: string) => invoke<boolean>("choose_account_photo", { id }),
   clearAccountPhoto: (id: string) => invoke<void>("clear_account_photo", { id }),
   closeThisWindow: () => getCurrentWindow().close(),
+
+  /** Shows an image over Firehop's taskbar button, or clears it with null. */
+  async setTaskbarOverlay(icon: SquareImage | null): Promise<void> {
+    const window = getCurrentWindow();
+    if (!icon) return window.setOverlayIcon(undefined);
+    const image = await Image.new(icon.rgba, icon.size, icon.size);
+    try {
+      await window.setOverlayIcon(image);
+    } finally {
+      await image.close();
+    }
+  },
 
   onRosterChanged: (handler: (view: RosterView) => void): Promise<UnlistenFn> =>
     listen<RosterView>(ROSTER_CHANGED, (event) => handler(event.payload)),

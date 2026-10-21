@@ -12,7 +12,7 @@ use serde::{Deserialize, Serialize, Serializer};
 use tauri::{AppHandle, Runtime, State};
 use tauri_plugin_dialog::DialogExt;
 
-use crate::editor;
+use crate::{editor, platform};
 
 type Service<'a> = State<'a, Arc<AccountService>>;
 
@@ -62,6 +62,13 @@ pub async fn add_account(service: Service<'_>) -> Outcome {
 #[tauri::command]
 pub async fn activate_account(service: Service<'_>, id: String) -> Outcome {
     Ok(service.activate(parse_id(&id)?)?)
+}
+
+/// The system accent colour (`#rrggbb`), so the strip can draw the taskbar
+/// badge the way Windows draws app badges. Web content cannot read it.
+#[tauri::command]
+pub async fn accent_color() -> Outcome<Option<String>> {
+    Ok(platform::accent_color())
 }
 
 /// Moves an account to `index` in the strip (drag and drop, Alt+↑/↓, or the menu).

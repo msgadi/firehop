@@ -49,6 +49,11 @@ export const FULL_NAME_MAX = 64;
 
 const BADGE_CAP = 99;
 
+/** Unread chats across every account. Mirrors `RosterView::total_unread` in the core. */
+export function totalUnread(view: RosterView): number {
+  return view.accounts.reduce((sum, account) => sum + account.unread, 0);
+}
+
 /** Text for an unread badge: nothing at zero, "99+" past the cap. */
 export function badgeText(unread: number): string {
   if (unread <= 0) return "";

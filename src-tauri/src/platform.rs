@@ -1,5 +1,5 @@
 //! The few platform calls Tauri does not expose yet. This is the only place in
-//! the crate that touches WebView2 COM directly.
+//! the crate that touches WebView2 COM or other Windows APIs directly.
 
 use tauri::{Runtime, Webview};
 
@@ -48,3 +48,23 @@ pub fn set_priority<R: Runtime>(webview: &Webview<R>, priority: Priority) {
 
 #[cfg(not(windows))]
 pub fn set_priority<R: Runtime>(_webview: &Webview<R>, _priority: Priority) {}
+
+/// The Windows accent colour as `#rrggbb`: the colour Windows paints app
+/// badges in. `None` if it cannot be read.
+#[cfg(windows)]
+pub fn accent_color() -> Option<String> {
+    use windows::UI::ViewManagement::{UIColorType, UISettings};
+
+    match UISettings::new().and_then(|settings| settings.GetColorValue(UIColorType::Accent)) {
+        Ok(color) => Some(format!("#{:02x}{:02x}{:02x}", color.R, color.G, color.B)),
+        Err(err) => {
+            log::debug!("accent colour unavailable: {err}");
+            None
+        }
+    }
+}
+
+#[cfg(not(windows))]
+pub fn accent_color() -> Option<String> {
+    None
+}

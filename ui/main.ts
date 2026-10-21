@@ -1,6 +1,7 @@
 import { backend } from "./backend";
-import { shortcutTarget } from "./model";
+import { type RosterView, shortcutTarget, totalUnread } from "./model";
 import { Strip } from "./strip";
+import { TaskbarBadge } from "./taskbar";
 
 const strip = new Strip(document.body, {
   activate: (id) => run(backend.activateAccount(id)),
@@ -10,9 +11,17 @@ const strip = new Strip(document.body, {
   move: (id, index) => run(backend.moveAccount(id, index).catch(resync)),
 });
 
+const taskbar = new TaskbarBadge();
+
+/** Everything that shows the roster: the strip and the taskbar badge. */
+function show(view: RosterView): void {
+  strip.render(view);
+  taskbar.show(totalUnread(view));
+}
+
 // Subscribe before the first fetch, so an update that lands in between is not lost.
-await backend.onRosterChanged((view) => strip.render(view));
-strip.render(await backend.roster());
+await backend.onRosterChanged(show);
+show(await backend.roster());
 
 // Ctrl+1…9 switch accounts while the strip has focus. (While a chat has focus,
 // those keys belong to WhatsApp.)
@@ -29,7 +38,7 @@ window.addEventListener("keydown", (event) => {
 
 async function resync(error: unknown): Promise<void> {
   console.error("[strip]", error);
-  strip.render(await backend.roster());
+  show(await backend.roster());
 }
 
 function run(task: Promise<unknown>): void {

@@ -33,7 +33,7 @@ url.workspace = true
 [target.'cfg(windows)'.dependencies]
 # Must match the versions wry uses (check with `cargo tree -i webview2-com`).
 webview2-com = "0.39"
-windows = "0.62"
+windows = { version = "0.62", features = ["UI_ViewManagement"] }
 
 [lints]
 workspace = true
