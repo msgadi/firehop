@@ -4,8 +4,10 @@ import { Strip } from "./strip";
 
 const strip = new Strip(document.body, {
   activate: (id) => run(backend.activateAccount(id)),
-  openMenu: (account) => run(backend.showAccountMenu(account)),
+  openMenu: (account) => run(backend.showAccountMenu(account, strip.moveActions(account.id))),
   add: () => run(backend.addAccount()),
+  // The strip shows the new order before it is saved; if saving fails, show the real one again.
+  move: (id, index) => run(backend.moveAccount(id, index).catch(resync)),
 });
 
 // Subscribe before the first fetch, so an update that lands in between is not lost.
@@ -24,6 +26,11 @@ window.addEventListener("keydown", (event) => {
     run(backend.activateAccount(target.id));
   }
 });
+
+async function resync(error: unknown): Promise<void> {
+  console.error("[strip]", error);
+  strip.render(await backend.roster());
+}
 
 function run(task: Promise<unknown>): void {
   task.catch((error: unknown) => console.error("[strip]", error));

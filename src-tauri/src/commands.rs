@@ -64,6 +64,12 @@ pub async fn activate_account(service: Service<'_>, id: String) -> Outcome {
     Ok(service.activate(parse_id(&id)?)?)
 }
 
+/// Moves an account to `index` in the strip (drag and drop, Alt+↑/↓, or the menu).
+#[tauri::command]
+pub async fn move_account(service: Service<'_>, id: String, index: usize) -> Outcome {
+    Ok(service.move_account(parse_id(&id)?, index)?)
+}
+
 #[tauri::command]
 pub async fn reload_account(service: Service<'_>, id: String) -> Outcome {
     Ok(service.reload(parse_id(&id)?)?)

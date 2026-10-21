@@ -23,6 +23,25 @@ export interface ProfileForm {
   readonly accent: number;
 }
 
+/** Reorder actions for one account; null where it is already first or last. */
+export interface MoveActions {
+  readonly up: (() => void) | null;
+  readonly down: (() => void) | null;
+}
+
+/** The accounts with `id` moved to `index`. Mirrors `Roster::move_to` in the core. */
+export function moved(
+  accounts: readonly AccountView[],
+  id: string,
+  index: number,
+): readonly AccountView[] {
+  const rest = accounts.filter((a) => a.id !== id);
+  const account = accounts.find((a) => a.id === id);
+  if (!account) return accounts;
+  const at = Math.min(Math.max(index, 0), rest.length);
+  return [...rest.slice(0, at), account, ...rest.slice(at)];
+}
+
 /** Must match `Accent::COUNT`, `AccountName::MAX_CHARS` and `FullName::MAX_CHARS` in the core. */
 export const ACCENT_COUNT = 8;
 export const NAME_MAX = 32;

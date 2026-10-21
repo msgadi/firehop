@@ -53,6 +53,11 @@ app should look and behave exactly like the official WhatsApp Desktop app.
     with banner and preview art, badges, clear features, how-it-works,
     architecture, FAQ, disclaimer, and full community files (contributing,
     security, issue/PR templates, CI).
+14. Accounts in the strip can be **reordered** (October 2026): drag and drop
+    with our own pointer-event gesture (no HTML5 drag ghost), rows gliding
+    aside; Esc or releasing outside the strip cancels. Without a mouse:
+    Alt+↑/↓ on a focused account, or right-click → Move up / Move down. The
+    order is saved and Ctrl+1…9 follow it. Clicking still just switches.
 
 ## Non-negotiable product rules
 
@@ -86,7 +91,8 @@ src-tauri        firehop (Tauri shell): adapters and composition root
   platform.rs      the only raw WebView2 COM code (memory target level)
 ui/              the account strip and editor: vanilla TypeScript, no framework
   backend.ts       the only module that talks to Rust
-  strip.ts         keyed DOM rendering, so CSS transitions animate
+  strip.ts         keyed DOM rendering, so CSS transitions animate; FLIP glide on reorder
+  reorder.ts       drag-and-drop gesture for reordering the strip (pointer events)
   model.ts         types mirroring RosterView and ProfileForm, plus pure helpers
   editor.ts        the account editor page (photo, name, full name, colour)
   theme.css        shared design tokens for every local page

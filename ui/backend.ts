@@ -6,7 +6,7 @@ import { listen, type UnlistenFn } from "@tauri-apps/api/event";
 import { Menu } from "@tauri-apps/api/menu";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { ask } from "@tauri-apps/plugin-dialog";
-import type { AccountView, ProfileForm, RosterView } from "./model";
+import type { AccountView, MoveActions, ProfileForm, RosterView } from "./model";
 
 /** Must match `ROSTER_CHANGED` in src-tauri/src/observer.rs. */
 const ROSTER_CHANGED = "roster-changed";
@@ -15,6 +15,7 @@ export const backend = {
   roster: () => invoke<RosterView>("roster"),
   addAccount: () => invoke<void>("add_account"),
   activateAccount: (id: string) => invoke<void>("activate_account", { id }),
+  moveAccount: (id: string, index: number) => invoke<void>("move_account", { id, index }),
   reloadAccount: (id: string) => invoke<void>("reload_account", { id }),
   removeAccount: (id: string) => invoke<void>("remove_account", { id }),
   openAccountEditor: (id: string) => invoke<void>("open_account_editor", { id }),
@@ -28,7 +29,7 @@ export const backend = {
     listen<RosterView>(ROSTER_CHANGED, (event) => handler(event.payload)),
 
   /** Native right-click menu for an account in the strip. */
-  async showAccountMenu(account: AccountView): Promise<void> {
+  async showAccountMenu(account: AccountView, moves: MoveActions): Promise<void> {
     const menu = await Menu.new({
       items: [
         {
@@ -37,6 +38,19 @@ export const backend = {
           action: () => void backend.openAccountEditor(account.id),
         },
         { id: "reload", text: "Reload", action: () => void backend.reloadAccount(account.id) },
+        { item: "Separator" },
+        {
+          id: "move-up",
+          text: "Move up\tAlt+↑",
+          enabled: moves.up !== null,
+          action: () => moves.up?.(),
+        },
+        {
+          id: "move-down",
+          text: "Move down\tAlt+↓",
+          enabled: moves.down !== null,
+          action: () => moves.down?.(),
+        },
         { item: "Separator" },
         {
           id: "remove",

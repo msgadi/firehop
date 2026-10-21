@@ -6,6 +6,9 @@ All notable changes to Firehop are listed here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Reorder accounts in the strip: drag and drop, Alt+↑/↓, or right-click → Move up / Move down. The order is saved, and Ctrl+1…9 follow it.
+
 ## [0.1.0] - 2026-10-20
 
 ### Added

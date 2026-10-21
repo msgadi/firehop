@@ -11,6 +11,7 @@
     "allow-roster",
     "allow-add-account",
     "allow-activate-account",
+    "allow-move-account",
     "allow-reload-account",
     "allow-remove-account",
     "allow-open-account-editor"

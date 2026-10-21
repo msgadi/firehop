@@ -40,6 +40,8 @@ body {
   display: grid;
   place-items: center;
   width: 68px;
+  /* Rows make room for a dragged account, and slide back when a drag is cancelled. */
+  transition: transform 180ms var(--ease-out);
 }
 
 /* The active indicator: a pill growing out of the left edge. */
@@ -211,4 +213,22 @@ body {
   box-shadow:
     0 0 0 2px var(--rail),
     0 0 0 4px var(--accent);
+}
+
+/* The account being dragged follows the pointer exactly, lifted above the rest. */
+.account.dragging {
+  z-index: 1;
+  cursor: grabbing;
+  transition: none;
+}
+
+.account.dragging .avatar,
+.account.dragging .avatar:active {
+  cursor: grabbing;
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgb(0 0 0 / 45%);
+}
+
+.account.dragging .pill {
+  opacity: 0;
 }

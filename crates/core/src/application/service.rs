@@ -102,6 +102,13 @@ impl AccountService {
         Ok(())
     }
 
+    /// Reorders the strip. Order is presentation only, so sessions are untouched.
+    pub fn move_account(&self, id: AccountId, index: usize) -> Result<(), AppError> {
+        self.mutate(|roster| roster.move_to(id, index))?;
+        self.publish();
+        Ok(())
+    }
+
     /// Fails if the account is gone, so callers can refuse to open an editor for it.
     pub fn ensure_exists(&self, id: AccountId) -> Result<(), AppError> {
         self.lock().roster.get(id)?;

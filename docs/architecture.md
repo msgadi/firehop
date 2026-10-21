@@ -95,4 +95,8 @@ lock, so a busy service never stalls rendering.
 - A background colour on every webview, so there is never a white flash.
 - The strip updates keyed DOM rows in place, so CSS transitions run on the
   compositor and nothing is rebuilt.
+- Reordering moves rows by `transform` only. A drag follows the pointer and
+  neighbours slide aside; on drop the strip shows the new order at once
+  (optimistic), glides rows into place with FLIP, and then saves it via
+  `move_account`. If saving fails, the strip reloads the real order.
 - Release profile: LTO, `codegen-units = 1`, `panic = "abort"`, stripped symbols.

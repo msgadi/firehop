@@ -83,6 +83,16 @@ impl Roster {
         Ok(())
     }
 
+    /// Moves an account to `index` in the strip order (clamped to the last
+    /// slot). The other accounts keep their relative order.
+    pub fn move_to(&mut self, id: AccountId, index: usize) -> Result<(), RosterError> {
+        let from = self.require(id)?;
+        let account = self.accounts.remove(from);
+        let to = index.min(self.accounts.len());
+        self.accounts.insert(to, account);
+        Ok(())
+    }
+
     /// Unlinks an account. If it was active, the account that took its slot
     /// (or the new last one) becomes active.
     pub fn remove(&mut self, id: AccountId) -> Result<Account, RosterError> {
