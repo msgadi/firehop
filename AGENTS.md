@@ -59,8 +59,8 @@ app should look and behave exactly like the official WhatsApp Desktop app.
     Alt+↑/↓ on a focused account, or right-click → Move up / Move down. The
     order is saved and Ctrl+1…9 follow it. Clicking still just switches.
 15. **One design file for everything** (October 2026): the Claude Design
-    canvas "Firehop Design", https://claude.ai/artifact/EcVgzuPBqF4KUr7VnmK8BS
-    (private to the owner). Never create a new design artifact per request:
+    canvas "Firehop Design" (private to the owner; its link is kept out of
+    this public repo, so ask the owner for it). Never create a new design artifact per request:
     add or update boards in that canvas, on the right page (00 Cover, 01
     Foundations, 02 Components, 03 Screens, 04 Flows, 05 Brand, 06
     Proposals), tag each board SHIPPED / BUILT / PROPOSED, and add a line to
