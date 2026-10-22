@@ -54,6 +54,7 @@ once. Switching between them is one click.
 | ↕️ **Your order** | Drag accounts to rearrange the strip (or Alt+↑/↓). The order sticks, and Ctrl+1…9 follow it. |
 | 🪶 **Light on memory** | Hidden accounts stay connected but drop to WebView2's low-memory mode, using the same tuning flags as WhatsApp's own Windows client. |
 | 🛡️ **Locked down** | WhatsApp pages get no access to the app. Foreign links open in your browser, and custom URL schemes are blocked. |
+| 🔥 **Stays in the tray** | Closing the window keeps Firehop running in the tray, so messages and calls still arrive. Quit from the tray icon. |
 | 🧈 **Smooth** | Native Rust shell, no Electron. Keyed DOM updates, compositor-only animations, no white flashes. |
 
 ## 🧭 How it works

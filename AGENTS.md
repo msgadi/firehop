@@ -68,7 +68,11 @@ app should look and behave exactly like the official WhatsApp Desktop app.
 16. The **taskbar button shows the total unread count** (October 2026), like
     WhatsApp Desktop: a Windows overlay badge in the system accent colour
     (Windows paints app badges in it), hidden at 0, "99+" past 99. Flashing
-    the taskbar and a tray icon were proposed and are not built.
+    the taskbar was proposed and is not built.
+17. **Closing the window keeps Firehop running in the tray** (October 2026).
+    The X button only hides the window; Firehop quits only from the tray
+    icon's menu ("Quit Firehop"). Left click on the tray icon (or launching
+    Firehop again) brings the window back. The tooltip shows the unread total.
 
 ## Non-negotiable product rules
 
@@ -100,6 +104,7 @@ src-tauri        firehop (Tauri shell): adapters and composition root
   editor.rs        the account editor window (owned by the main window)
   commands.rs      IPC commands (async, so webview work never blocks the UI thread); native file picker
   platform.rs      the only raw Windows API code (WebView2 memory target, accent colour)
+  tray.rs          the tray icon and its Open / Quit menu; closing the window hides to it
 ui/              the account strip and editor: vanilla TypeScript, no framework
   backend.ts       the only module that talks to Rust
   strip.ts         keyed DOM rendering, so CSS transitions animate; FLIP glide on reorder

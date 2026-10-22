@@ -1,13 +1,13 @@
 use firehop_core::application::{RosterObserver, RosterView};
 use tauri::{AppHandle, Emitter, EventTarget, Manager, Runtime};
 
-use crate::{APP_NAME, EDITOR_WINDOW, MAIN_WINDOW, STRIP_WEBVIEW};
+use crate::{APP_NAME, EDITOR_WINDOW, MAIN_WINDOW, STRIP_WEBVIEW, tray};
 
 /// Event the strip and editor listen to for roster updates. Must match `ui/backend.ts`.
 pub const ROSTER_CHANGED: &str = "roster-changed";
 
 /// Pushes roster updates to the strip and puts the total unread count in the
-/// window title, which is also what the taskbar shows.
+/// window title (which the taskbar shows) and the tray tooltip.
 pub struct StripObserver<R: Runtime> {
     app: AppHandle<R>,
 }
@@ -29,6 +29,7 @@ impl<R: Runtime> RosterObserver for StripObserver<R> {
                 log::warn!("could not send the roster to {page}: {err}");
             }
         }
+        tray::show_unread(&self.app, view.total_unread());
         if let Some(window) = self.app.get_window(MAIN_WINDOW) {
             let title = match view.total_unread() {
                 0 => APP_NAME.to_owned(),

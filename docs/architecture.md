@@ -35,7 +35,7 @@ code owns only the window, the strip and the glue between them.
 | Domain | `crates/core/src/domain` | accounts, roster rules | I/O, Tauri, WebView2 |
 | Application | `crates/core/src/application` | use cases, ports | Tauri, WebView2, files |
 | Policy, layout | `crates/core/src/{policy,layout}.rs` | URLs, geometry | Tauri |
-| Adapters | `crates/core/src/storage.rs`, `src-tauri/src/{sessions,observer,platform}.rs` | one technology each | each other |
+| Adapters | `crates/core/src/storage.rs`, `src-tauri/src/{sessions,observer,platform,tray}.rs` | one technology each | each other |
 | Interface | `src-tauri/src/commands.rs`, `ui/` | IPC | business rules |
 | Composition root | `src-tauri/src/lib.rs` | everything, to wire it | — |
 

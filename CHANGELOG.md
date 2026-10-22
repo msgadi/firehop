@@ -6,6 +6,9 @@ All notable changes to Firehop are listed here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Firehop stays running in the notification area (tray) when you close the window, so messages and calls keep arriving. Click the tray icon to open it again; right-click → Quit Firehop to exit. The tooltip shows the unread total.
+
 ## [0.2.0] - 2026-10-21
 
 ### Added

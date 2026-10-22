@@ -7,6 +7,7 @@
 //! - [`commands`]: the IPC surface the strip and the account editor call;
 //! - [`editor`]: the account editor window;
 //! - [`platform`]: the few raw WebView2 calls Tauri does not expose;
+//! - [`tray`]: the tray icon, which keeps Firehop running after the window closes;
 //! - [`run`] / `compose`: the composition root.
 //!
 //! [`Sessions`]: firehop_core::application::Sessions
@@ -17,6 +18,7 @@ mod editor;
 mod observer;
 mod platform;
 mod sessions;
+mod tray;
 
 use std::sync::{Arc, mpsc};
 use std::thread;
@@ -27,6 +29,7 @@ use firehop_core::storage::JsonRosterStore;
 use tauri::webview::WebviewBuilder;
 use tauri::window::{Color, WindowBuilder};
 use tauri::{App, Manager, WebviewUrl, WindowEvent};
+use tauri_plugin_window_state::StateFlags;
 
 use observer::StripObserver;
 use sessions::{SessionEvent, WebviewSessions};
@@ -54,13 +57,15 @@ pub fn run() {
     tauri::Builder::default()
         // Registered first, so a second launch focuses this instance before anything else starts.
         .plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
-            if let Some(window) = app.get_window(MAIN_WINDOW) {
-                let _ = window.unminimize();
-                let _ = window.set_focus();
-            }
+            tray::show_main(app);
         }))
         .plugin(tauri_plugin_log::Builder::new().build())
-        .plugin(tauri_plugin_window_state::Builder::new().build())
+        .plugin(
+            tauri_plugin_window_state::Builder::new()
+                // Quitting from the tray while hidden must not make the next launch start hidden.
+                .with_state_flags(StateFlags::all() - StateFlags::VISIBLE)
+                .build(),
+        )
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
@@ -116,14 +121,23 @@ fn compose(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
     }));
     app.manage(Arc::clone(&service));
 
-    let relayout_target = window.clone();
-    window.on_window_event(move |event| {
-        if matches!(
-            event,
-            WindowEvent::Resized(_) | WindowEvent::ScaleFactorChanged { .. }
-        ) {
-            sessions::relayout(&relayout_target);
+    tray::install(app)?;
+
+    let target = window.clone();
+    window.on_window_event(move |event| match event {
+        WindowEvent::Resized(_) | WindowEvent::ScaleFactorChanged { .. } => {
+            sessions::relayout(&target);
         }
+        // Closing hides to the tray, like WhatsApp Desktop keeps running, so
+        // messages and calls still arrive. "Quit" in the tray menu exits.
+        WindowEvent::CloseRequested { api, .. } => {
+            api.prevent_close();
+            editor::close(target.app_handle());
+            if let Err(err) = target.hide() {
+                log::warn!("could not hide the window: {err}");
+            }
+        }
+        _ => {}
     });
 
     // Session events arrive on the UI thread. Hand them to the service on a
